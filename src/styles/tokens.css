@@ -1,0 +1,23 @@
+:root {
+  --color-background: #1b1714;
+  --color-text: #f3eee6;
+  --color-yes-background: #176b3a;
+  --color-yes-text: #f3eee6;
+  --color-no-background: #9d2f2c;
+  --color-no-text: #f3eee6;
+  --color-focus: #f3eee6;
+
+  --font-question: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --font-ui: system-ui, sans-serif;
+
+  --space-page: 1.5rem;
+  --space-question: clamp(1.25rem, 4vh, 2.5rem);
+  --question-size: clamp(2.75rem, 11vw, 5.25rem);
+  --question-size-compact: 1.5rem;
+  --choice-min-height: 3.25rem;
+  --no-reserved-height: 3.5rem;
+  --no-min-width: 5.5rem;
+  --content-max-width: 38rem;
+  --yes-font-size: 1.0625rem;
+  --yes-font-growth: 5.5rem;
+}

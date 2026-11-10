@@ -1,0 +1,260 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+}
+
+.question-screen {
+  --question-block: calc(
+    var(--question-size-compact) +
+      (1 - var(--yes-fit, 0)) * (var(--question-size) - var(--question-size-compact))
+  );
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: calc(
+    (1 - var(--yes-fit, 0)) * var(--content-max-width) + var(--yes-fit, 0) * 100%
+  );
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-inline: auto;
+  padding:
+    calc((1 - var(--yes-clear, 0)) * max(var(--space-page), env(safe-area-inset-top)))
+    calc((1 - var(--yes-clear, 0)) * max(var(--space-page), env(safe-area-inset-right)))
+    calc((1 - var(--yes-clear, 0)) * max(var(--space-page), env(safe-area-inset-bottom)))
+    calc((1 - var(--yes-clear, 0)) * max(var(--space-page), env(safe-area-inset-left)));
+}
+
+.intro-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.75rem, 5vh, 2.75rem);
+  width: min(100%, var(--content-max-width));
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-inline: auto;
+  padding:
+    max(var(--space-page), env(safe-area-inset-top))
+    max(var(--space-page), env(safe-area-inset-right))
+    max(var(--space-page), env(safe-area-inset-bottom))
+    max(var(--space-page), env(safe-area-inset-left));
+}
+
+.intro-screen__prompt {
+  margin: 0;
+  font-family: var(--font-question);
+  font-size: var(--question-size);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.intro-screen__prompt:focus,
+.question-screen__question:focus {
+  outline: none;
+}
+
+.intro-screen__prompt:focus-visible,
+.question-screen__question:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.intro-screen__begin {
+  align-self: flex-start;
+  width: min(100%, 12rem);
+  min-height: var(--choice-min-height);
+  padding: 0.8rem 1.25rem;
+  border: 0;
+  background: var(--color-yes-background);
+  color: var(--color-yes-text);
+  font: inherit;
+  font-size: var(--yes-font-size);
+  font-weight: 650;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.intro-screen__begin:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.question-screen__question {
+  flex: 0 0 auto;
+  max-height: calc((1 - var(--yes-clear, 0)) * 40vh);
+  margin: 0 0 calc(
+    (1 - var(--yes-clear, 0)) *
+      ((1 - var(--yes-fit, 0)) * var(--space-question) + 0.75rem)
+  );
+  overflow: hidden;
+  font-family: var(--font-question);
+  font-size: calc((1 - var(--yes-clear, 0)) * var(--question-block));
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: calc((1 - var(--yes-clear, 0)) * 1.02);
+  text-wrap: balance;
+}
+
+.question-screen__choices {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: calc((1 - var(--yes-clear, 0)) * 0.75rem);
+  width: 100%;
+}
+
+.choice {
+  width: 100%;
+  min-height: var(--choice-min-height);
+  padding: 0.8rem 1.25rem;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  font-weight: 650;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.choice:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.choice--yes {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  /* Keep the word in the first screen once the button is taller than the viewport. */
+  padding-top: calc(0.8rem + var(--yes-fit, 0) * max(0px, 50dvh - 9rem));
+  min-height: calc(
+    var(--choice-min-height) +
+      var(--yes-fit, 0) * max(0px, 100vh - 15rem) +
+      var(--yes-beyond, 0) * 160vh
+  );
+  min-height: calc(
+    var(--choice-min-height) +
+      var(--yes-fit, 0) * max(0px, 100dvh - 15rem) +
+      var(--yes-beyond, 0) * 160dvh
+  );
+  background: var(--color-yes-background);
+  color: var(--color-yes-text);
+  font-size: min(
+    28vw,
+    calc(
+      var(--yes-font-size) +
+        var(--yes-fit, 0) * var(--yes-font-growth) +
+        var(--yes-beyond, 0) * 6rem
+    )
+  );
+}
+
+.choice--no {
+  display: flex;
+  flex: 0 0 auto;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  width: max(var(--no-min-width), calc(var(--no-width-scale, 1) * 100%));
+  max-width: 100%;
+  min-height: var(--no-reserved-height);
+  padding-inline: max(0.6rem, calc(1.25rem * var(--no-width-scale, 1)));
+  background: var(--color-no-background);
+  color: var(--color-no-text);
+  font-size: max(0.9rem, calc(1.0625rem * (0.82 + 0.18 * var(--no-width-scale, 1))));
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.refusal-announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.success-screen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--color-background);
+}
+
+.success-screen:focus {
+  outline: none;
+}
+
+.success-screen:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -6px;
+}
+
+.success-screen__stage {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  background: var(--color-background);
+}
+
+.success-screen__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--color-background);
+}
+
+.success-screen__caption,
+.success-screen__fallback {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.success-screen__caption {
+  flex: 0 0 auto;
+  padding:
+    0.7rem
+    1rem
+    max(0.85rem, env(safe-area-inset-bottom));
+  color: var(--color-text);
+  background: var(--color-background);
+  font-family: var(--font-question);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.success-screen__fallback {
+  padding: 1.5rem;
+  color: var(--color-text);
+  text-align: center;
+}
