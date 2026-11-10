@@ -43,10 +43,6 @@ function labelForCount(count: number, originalCount: number): string {
   return continuedRefusalLines[continuedIndex] ?? invitationCopy.noLabel
 }
 
-// Presses 1–30 keep the original ease-out, 1 - (1 - count/30)^2, which
-// reaches 1 when Yes has filled the viewport around No. Presses 31–100
-// continue past 1 with ((count - 30) / 70)^2, up to 2. The extra is what
-// pushes No below the fold. The two stages meet with a flat slope.
 function yesEmphasisFor(count: number): number {
   if (count <= 0) {
     return 0
@@ -64,8 +60,6 @@ function yesEmphasisFor(count: number): number {
   return Math.round(emphasis * 1000000) / 1000000
 }
 
-// Width stays full through the in-viewport stage, then narrows in equal
-// steps through press 100. It does not follow the Yes curve.
 function noWidthScaleFor(count: number): number {
   if (count <= yesFitAtCount) {
     return 1

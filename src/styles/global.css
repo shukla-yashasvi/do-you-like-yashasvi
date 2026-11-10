@@ -15,6 +15,11 @@ body {
   font-family: var(--font-ui);
 }
 
+button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 .question-screen {
   --question-block: calc(
     var(--question-size-compact) +
@@ -65,15 +70,9 @@ body {
   text-wrap: balance;
 }
 
-.intro-screen__prompt:focus,
-.question-screen__question:focus {
+.intro-screen__prompt,
+.question-screen__question {
   outline: none;
-}
-
-.intro-screen__prompt:focus-visible,
-.question-screen__question:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 4px;
 }
 
 .intro-screen__begin {
@@ -145,7 +144,6 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  /* Keep the word in the first screen once the button is taller than the viewport. */
   padding-top: calc(0.8rem + var(--yes-fit, 0) * max(0px, 50dvh - 9rem));
   min-height: calc(
     var(--choice-min-height) +

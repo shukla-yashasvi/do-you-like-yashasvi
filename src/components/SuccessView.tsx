@@ -22,9 +22,7 @@ export function SuccessView() {
     }
 
     video.muted = true
-    video.play()?.catch(() => {
-      // A blocked autoplay leaves the loaded frame in place. The closing line stays.
-    })
+    video.play()?.catch(() => undefined)
   }, [reducedMotion])
 
   return (

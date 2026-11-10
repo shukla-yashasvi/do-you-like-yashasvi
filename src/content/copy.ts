@@ -21,23 +21,25 @@ export const invitationCopy = {
   noLabel: 'No',
   refusalLines: [
     'Think again gawaar',
-    'If I offer chocolate ice cream',
+    'What if I offered u ice cream',
     'How about momos',
     'PLEA*E POOKIE',
+    'alooooo',
+    'babuuu',
     'But :*(',
     'I am going to die',
     'Yep im dead',
-    "ok ur talking to yashasvi's ghost",
+    "ok now u r talking to yashasvi's ghost",
     ':((((',
+    'booooooo',
     'My kuchu puchu',
   ],
-  successCaption: 'He knows.',
+  successCaption: 'He knows',
   successSmirk: ';)',
   videoLabel: 'Pokko Baby Boo dancing',
   videoUnavailable: 'The dance could not be played.',
 } as const satisfies InvitationCopy
 
-// Used from the 11th No press onward. The original ten lines above stay first.
 export const continuedRefusalLines = [
   'Not even a little?',
   'Are you sure?',
@@ -53,8 +55,6 @@ export const continuedRefusalLines = [
   'Okay, but why not?',
 ] as const satisfies readonly string[]
 
-// Kept for a later pass. Not part of the refusal sequence.
-// "I will die" is a different phrase from "I am going to die".
 export const reservedPersonalPhrases = [
   'My PUCHKUU',
   'My alooo',
